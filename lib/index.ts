@@ -29,7 +29,7 @@ const start = async () => {
 
     /** 发送消息 */
     sendMessage(token, {
-      date: { value: formatDate(new Date(), 'yyyy-MM-dd EEE'), color: '#364f6b' },
+      date: { value: formatDate(new Date(), 'yyyy-MM-dd EEE HH:mm:ss'), color: '#364f6b' },
       morning: { value: morning, color: '#5E46E3' },
       comment: { value: commentStr, color: '#fc5185' }
     })

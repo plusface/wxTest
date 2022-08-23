@@ -15,4 +15,4 @@ jobs:
         with:
           node-version: 16
       - run: yarn install
-      - run: yarn dev
+      - run: yarn start
