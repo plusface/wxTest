@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "yarn build && cd dist && node index.js && cd ..",
     "build": "vite build && node scripts/copyFile.js",
-    "run": "cd dist && node index.js"
+    "test": "cd dist && node index.js"
   },
   "author": "",
   "license": "ISC",
