@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "yarn build && cd dist && node index.js && cd ..",
-    "build": "vite build && node scripts/copyFile.js"
+    "build": "vite build && node scripts/copyFile.js",
+    "run": "cd dist && node index.js"
   },
   "author": "",
   "license": "ISC",
