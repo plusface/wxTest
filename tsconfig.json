@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "noEmit": false,
+    "noImplicitAny": false,
+    "declaration": true,
+    "strictNullChecks": false,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "importHelpers": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": false,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
+  "include": ["env.d.ts", "*/**/*.ts", "*/**/*.d.ts"]
+}
