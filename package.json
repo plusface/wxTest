@@ -11,7 +11,7 @@
   "author": "wsl",
   "license": "ISC",
   "dependencies": {
-    "@wsl/js-tools": "gitee+https://gitee.com/w03/js-tools.git",
+    "@wsl/js-tools": "https://gitee.com/w03/js-tools.git",
     "node-self": "^1.0.0-d"
   },
   "devDependencies": {
