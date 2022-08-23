@@ -6,7 +6,6 @@ export default defineConfig(({ command, mode }) => {
   console.log('[ config ]', config)
   return {
     build: {
-      sourcemap: true,
       lib: {
         formats: ['cjs'],
         entry: resolve(__dirname, 'lib/index.ts'),

@@ -2,6 +2,18 @@ import { formatDate } from "@wsl/js-tools"
 import { getComment, getMorning, getToken, sendMessage } from "./config"
 const start = async () => {
   try {
+    // //test
+    // /** token */
+    // const token = (await getToken()).data.access_token
+
+    // /** 发送消息 */
+    // sendMessage(token, {
+    //   date: { value: formatDate(new Date(), 'yyyy-MM-dd EEE HH:mm:ss'), color: '#364f6b' },
+    //   morning: { value: '2', color: '#5E46E3' },
+    //   comment: { value: '3', color: '#fc5185' }
+    // })
+    // return
+
     /** 早安话语 */
     const morning = (await getMorning()).data.newslist[0].content
     console.log('[ morning ]', morning)

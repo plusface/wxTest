@@ -6,8 +6,7 @@ name: run wxTest
 on:
   schedule:
     - cron: '00 16 * * *'
-  push:
-  
+
 jobs:
   run:
     runs-on: ubuntu-latest
