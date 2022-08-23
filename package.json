@@ -1,22 +1,39 @@
 {
-  "name": "wx",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "yarn build && yarn test",
-    "build": "vite build",
-    "test": "node dist/index.js"
-  },
+  "name": "my-app",
+  "version": "0.0.1",
+  "main": "dist/app/index.js",
   "author": "wsl",
-  "license": "ISC",
+  "description": "app",
+  "scripts": {
+    "dev": "webpack  --mode development & node dist/index.js",
+    "build": "webpack  --mode production",
+    "start": "node dist/index.js"
+  },
   "dependencies": {
     "@wsl/js-tools": "https://gitee.com/w03/js-tools.git",
-    "node-self": "^1.0.0-d"
+    "node-self": "^1.0.0-d",
+    "axios": "^0.27.2"
   },
   "devDependencies": {
-    "@types/node": "^18.7.10",
-    "axios": "^0.27.2",
-    "vite": "^3.0.9"
+    "@babel/core": "^7.17.9",
+    "@babel/plugin-proposal-decorators": "^7.17.9",
+    "@babel/plugin-transform-regenerator": "^7.17.9",
+    "@babel/plugin-transform-runtime": "^7.16.8",
+    "@babel/preset-env": "^7.16.8",
+    "@babel/preset-typescript": "^7.16.7",
+    "@babel/runtime": "^7.17.9",
+    "babel-loader": "^8.2.5",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-parameter-decorator": "^1.0.16",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "clean-webpack-plugin": "^4.0.0",
+    "dotenv": "^16.0.1",
+    "tsconfig-paths": "^4.0.0",
+    "tsconfig-paths-webpack-plugin": "^3.5.2",
+    "typescript": "^4.7.4",
+    "typescript-transform-paths": "^3.3.1",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.9.1"
   }
 }

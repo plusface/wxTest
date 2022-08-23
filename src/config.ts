@@ -1,19 +1,21 @@
-import { AxiosStatic } from 'axios'
-import 'node-self'
-const axios = require('axios').default as AxiosStatic
+import axios from 'axios';
+import fs from 'fs';
+import 'node-self';
+import path from 'path';
 
+const dataConfig = JSON.parse(fs.readFileSync(path.resolve('data.json')).toString())
 /** 微信配置 */
 export const wxConfig = {
   appID: 'wxb5212b3e9fa96237',
   appsecret: '6a86d003014af740cd04542a9f9e5582',
-  templateId: 'QP5h0u4gABQFxEWWGAWblTb8JcQoajDopJzVgruPrI0',
-  userIds: ['ohUtg6ScKxpychUerozoLWP0Q8MA']
+  // templateId: 'QP5h0u4gABQFxEWWGAWblTb8JcQoajDopJzVgruPrI0',
+  // userIds: ['ohUtg6ScKxpychUerozoLWP0Q8MA']
 }
 
 export const apiConfig = {
   key: '8db0004e90c145dc9b146c8ad0d002f9'
 }
-const wxOrigin = import.meta.env.VITE_WX_API_URL
+const wxOrigin = 'https://api.weixin.qq.com'
 export const getToken = () =>
   axios.get<{ access_token: string; expires_in: number }>(
     `${wxOrigin}/cgi-bin/token?grant_type=client_credential&appid=${wxConfig.appID}&secret=${wxConfig.appsecret}`
@@ -27,10 +29,10 @@ export const sendMessage = (
     comment: { value: string; color: string }
   }
 ) => {
-  wxConfig.userIds.forEach(uid => {
+  dataConfig.userIds.forEach(uid => {
     axios.post(`${wxOrigin}/cgi-bin/message/template/send?access_token=${token}`, {
       touser: uid,
-      template_id: wxConfig.templateId,
+      template_id: dataConfig.templateId,
       data
     })
   })

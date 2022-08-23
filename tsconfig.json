@@ -3,18 +3,25 @@
     "target": "ESNext",
     "noEmit": false,
     "noImplicitAny": false,
-    "declaration": true,
     "strictNullChecks": false,
     "skipLibCheck": true,
+    // "useDefineForClassFields": true,
     "baseUrl": ".",
     "importHelpers": true,
-    "module": "ESNext",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "strict": true,
     "jsx": "preserve",
-    "sourceMap": false,
+    "sourceMap": true,
     "resolveJsonModule": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
-  "include": ["env.d.ts", "*/**/*.ts", "*/**/*.d.ts"]
+  "include": ["**/*.ts"]
 }
