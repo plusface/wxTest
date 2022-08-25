@@ -4,8 +4,9 @@
 name: every day
 
 on:
-  schedule:
-    - cron: '10 1 * * *'
+  push:
+  # schedule:
+  #   - cron: '10 1 * * *'
 
 jobs:
   run:

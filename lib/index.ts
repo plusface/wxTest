@@ -1,36 +1,39 @@
-import { formatDate } from "@wsl/js-tools"
-import { getComment, getHoroscope, getLoveWords, getLunar, getToken, sendMessage } from "./config"
-const start = async () => {
-  try {
 
-    /** 土味情话 */
-    const loveWords = (await getLoveWords()).data.newslist[0].content
-    console.log('[ loveWordsStr ]', loveWords)
+// send()
+// import schedule from 'node-schedule';
+// console.log('[ schedule ]', schedule)
 
-    /** 网易云热评 */
-    const { content, source } = (await getComment()).data.newslist[0]
-    const comment = `${content}    --- 《${source}》`
-    console.log('[ comment ]', comment)
-
-    /** 农历 */
-    const { lubarmonth, lunarday } = (await getLunar()).data.newslist[0]
-    const date = `${lubarmonth} ${lunarday} ${formatDate(new Date(), 'EEE HH:mm:ss')}`
-    console.log('[ date ]', date)
-
-    // 获取用户星座信息
-    getHoroscope()
-
-    /** token */
-    const token = (await getToken()).data.access_token
-    /** 发送消息 */
-    sendMessage(token, {
-      date: { value: date, color: '#364f6b' },
-      loveWord: { value: loveWords, color: '#5E46E3' },
-      comment: { value: comment, color: '#fc5185' },
-      star: { value: '', color: '#0d6c78' },
-    })
-  } catch (error) {
-    console.log('[ error ]', error)
+// const job = schedule.scheduleJob('52 14 * * *', function () {
+//   console.log('The answer to life, the universe, and everything!');
+// });
+import { SimpleIntervalJob, Task, ToadScheduler } from 'toad-scheduler';
+let i = 1
+const scheduler = new ToadScheduler();
+const task = new Task('simple task', () => {
+  console.log('Task triggered');
+  i++
+  if (i >= 100) {
+    scheduler.stopById('id_1')
   }
-}
-start()
+});
+
+const job1 = new SimpleIntervalJob(
+  { seconds: 1, runImmediately: true },
+  task,
+  'id_1'
+);
+
+
+//create and start jobs
+scheduler.addSimpleIntervalJob(job1);
+
+// stop job with ID: id_2
+// scheduler.stopById('id_2');
+
+// remove job with ID: id_1
+// scheduler.removeById('id_1');
+
+// check status of jobs
+// console.log(scheduler.getById('id_1').getStatus()); // returns Error (job not found)
+
+// console.log(scheduler.getById('id_2').getStatus()); // returns "stopped" and can be started again

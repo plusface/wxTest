@@ -1,0 +1,45 @@
+{
+  "wxAppId": "wxb5212b3e9fa96237",
+  "wxAppsecret": "6a86d003014af740cd04542a9f9e5582",
+  // 天行数据api的key https://www.tianapi.com/
+  "apiKey": "8db0004e90c145dc9b146c8ad0d002f9",
+
+  // 模板信息
+  "templateInfo": {
+    "id": "619FEz0tu_8dSkv3TQVu11DV6e2Ma0HqfnvbWWcHukU",
+    "colors": {
+      // "key": "#000" // key未属性名,值为颜色十六进制,空字符串为随机
+    }
+  },
+
+  // 用户信息
+  "userInfos": {
+    // 用户id
+    "ohUtg6ScKxpychUerozoLWP0Q8MA": {
+      "name": "wsl",
+      "constellation": "gemini", // 星座
+      "city": "郑州市"
+    }
+    // "ohUtg6ScKxpychUerozoLWP0Q8MA": {
+    //   "name": "wsl",
+    //   "constellation": "gemini", // 星座
+    //   "city": "郑州"
+    // }
+  },
+
+  // 星座中英对照
+  "desc": {
+    "aries": "白羊座",
+    "taurus": "金牛座",
+    "gemini": "双子座",
+    "cancer": "巨蟹座",
+    "leo": "狮子座",
+    "virgo": "处女座",
+    "libra": "天秤座",
+    "scorpio": "天蝎座",
+    "sagittarius": "射手座",
+    "capricorn": "摩羯座",
+    "aquarius": "水瓶座",
+    "pisces": "双鱼座"
+  }
+}

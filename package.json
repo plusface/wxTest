@@ -9,11 +9,13 @@
     "build": "vite build",
     "start": "node index.js"
   },
-  "author": "",
+  "author": "wsl",
   "license": "ISC",
   "dependencies": {
     "@wsl/js-tools": "https://gitee.com/w03/js-tools.git",
-    "jsonc": "^2.0.0"
+    "jsonc": "^2.0.0",
+    "node-schedule": "^2.1.0",
+    "toad-scheduler": "^1.6.1"
   },
   "devDependencies": {
     "@types/node": "^18.7.10",

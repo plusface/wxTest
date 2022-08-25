@@ -1,10 +1,11 @@
-// import legacy from '@vitejs/plugin-legacy'
 import { resolve } from 'path'
-import { defineConfig, loadEnv } from 'vite'
-export default defineConfig(({ command, mode }) => {
-  const config = loadEnv(mode, '')
-  console.log('[ config ]', config)
+import { defineConfig } from 'vite'
+export default defineConfig(() => {
   return {
+    ssr: {
+      target: 'node',
+      noExternal: true
+    },
     build: {
       ssr: true,
       outDir: '.',
@@ -15,34 +16,9 @@ export default defineConfig(({ command, mode }) => {
         fileName: 'main'
       },
       rollupOptions: {
-        external: ['path', 'fs']
+        external: ['path', 'fs', 'http', 'https', 'url', 'zlib', 'util', 'assert', 'stream', 'constants', 'events']
       },
       minify: false
-    },
-    define: {
-      'process.env': {
-        ...config
-      }
-    },
-    plugins: [
-      // legacy({
-      //   targets: ['defaults' /*  'IE => 11' */]
-      // }),
-    ],
-    server: {
-      host: '0.0.0.0',
-      port: 3000,
-      hmr: false,
-      proxy: {
-        [config.VITE_WX_API_URL]: {
-          target: config.VITE_API_TARGET,
-          changeOrigin: true,
-          ws: true,
-          rewrite: path => path.replace(config.VITE_WX_API_URL, '/'),
-          timeout: 1000 * 60 * 5,
-          proxyTimeout: 1000 * 60 * 5
-        }
-      }
     }
   }
 })
