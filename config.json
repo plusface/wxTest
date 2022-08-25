@@ -6,9 +6,17 @@
 
   // 模板信息
   "templateInfo": {
-    "id": "619FEz0tu_8dSkv3TQVu11DV6e2Ma0HqfnvbWWcHukU",
+    "id": "bMSd-tCsVANkhtfVMPN9gmNsqO97DoRuZraVyiDp9YU",
     "colors": {
-      // "key": "#000" // key未属性名,值为颜色十六进制,空字符串为随机
+      "date": "#303a52",
+      "city": "#f3558e",
+      "weather": "#3d5af1",
+      "temperature": "#ff304f", // 温度
+      "tips": "#2f89fc", //建议
+      "pyqwenan": "#2cb978",
+      "horoscope": "#f5587b", //星座
+
+      "key": "#000" // key为属性名,值为颜色十六进制,空字符串为随机,随机的话容易看不清,复制上方即可
     }
   },
 
@@ -18,7 +26,7 @@
     "ohUtg6ScKxpychUerozoLWP0Q8MA": {
       "name": "wsl",
       "constellation": "gemini", // 星座
-      "city": "郑州市"
+      "city": "郑州"
     }
     // "ohUtg6ScKxpychUerozoLWP0Q8MA": {
     //   "name": "wsl",
@@ -26,6 +34,7 @@
     //   "city": "郑州"
     // }
   },
+  "sendTime": "8:30",
 
   // 星座中英对照
   "desc": {

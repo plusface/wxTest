@@ -1,4 +1,4 @@
-import { api, formatDate } from '@wsl/js-tools'
+import { api, createRandomColor, formatDate } from '@wsl/js-tools'
 import fs from 'fs'
 import { jsonc } from 'jsonc'
 import path from 'path'
@@ -26,7 +26,9 @@ type Config = {
       /** 城市 */
       city: string
     }
-  }
+  },
+  /** 定时发送时间 */
+  sendTime: string
 }
 type ApiResponse<T = any> = {
   code: number,
@@ -34,13 +36,18 @@ type ApiResponse<T = any> = {
   newslist: T[]
 }
 
+export let time = '30 8'
+
 let config!: Config
 try {
   config = jsonc.parse(fs.readFileSync(path.resolve('config.json')).toString())
 } catch (error) {
   console.log('[ json解析异常 ]', error)
 }
-const { wxAppId, wxAppsecret, apiKey, templateInfo, userInfos } = config
+const { wxAppId, wxAppsecret, apiKey, templateInfo, userInfos, sendTime } = config
+/** 处理成定时器认识的格式 */
+const [h, m] = sendTime.split('|')
+time = m + ' ' + h
 
 export const getToken = async () => {
   try {
@@ -133,52 +140,28 @@ export const send = async () => {
   Object.keys(userInfos).forEach(async uid => {
     const city = userInfos[uid].city
     const { area, highest, lowest, real, tips, weather, wind } = await getWeather(city)
-    console.log('[ weather ]', area, weather, wind, `${lowest} ~${highest}`, real, tips)
+    const weatherStr = `${weather} ${wind}`
+    const temperature = `${lowest} ~ ${highest}`
+    console.log('[ weather ]', area, weatherStr, temperature, real, tips)
     const horoscope = await getHoroscope(userInfos[uid].constellation)
     console.log('[ horoscope ]', horoscope)
+
+    const sendData = {
+      date: { value: date, color: templateInfo.colors['date'] || createRandomColor() },
+      city: { value: city, color: templateInfo.colors['city'] || createRandomColor() },
+      weather: { value: weather, color: templateInfo.colors['weather'] || createRandomColor() },
+      temperature: { value: temperature, color: templateInfo.colors['temperature'] || createRandomColor() },
+      tips: { value: tips, color: templateInfo.colors['tips'] || createRandomColor() },
+      pyqwenan: { value: pyqwenan, color: templateInfo.colors['pyqwenan'] || createRandomColor() },
+      horoscope: { value: horoscope, color: templateInfo.colors['horoscope'] || createRandomColor() },
+    }
+
+    api.post(`https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=${token}`, {
+      touser: uid,
+      template_id: templateInfo.id,
+      data: sendData
+    })
+    console.log('消息发送成功')
+
   })
-
 }
-// /** 星座运势,与用户对应 */
-// const horoscopeInfo: any = {}
-// /** 获取星座运势 */
-// export const getHoroscope1 = () => {
-//   userIds.forEach(async uid => {
-//     api.get<ApiResponse>(`http://api.tianapi.com/star/index?key=${apiKey}&astro=${constellation[uid]}`)
-//       .then(res => {
-//         console.log(`${res.data.newslist.find(v => v.type === '今日概述').content}`);
-//         horoscopeInfo[uid] = `${res.data.newslist.find(v => v.type === '今日概述').content}`
-//       })
-//   })
-// }
-
-
-/** 发送消息 */
-// export const sendMessage = (
-//   token: string,
-//   data: {
-//     date: { value: string; color: string }
-//     loveWord: { value: string; color: string }
-//     star: { value: string; color: string }
-//     comment: { value: string; color: string }
-//   }
-// ) => {
-//   userIds.forEach(uid => {
-//     data.star.value = horoscopeInfo[uid]
-//     axios.post(`https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=${token}`, {
-//       touser: uid,
-//       template_id: templateId,
-//       data
-//     })
-//   })
-// }
-
-/** token */
-    // const token = (await getToken()).data.access_token
-/** 发送消息 */
-    // sendMessage(token, {
-    //   date: { value: date, color: '#364f6b' },
-    //   loveWord: { value: loveWords, color: '#5E46E3' },
-    //   comment: { value: comment, color: '#fc5185' },
-    //   star: { value: '', color: '#0d6c78' },
-    // })
