@@ -25,3 +25,4 @@
 1. `yarn install` 安装依赖
 2. `yarn dev` 本地打包测试
 3. `yarn build` 只打包
+4. `https://gitee.com/w03/wx-test-push.git` 源码仓库(gitee)
