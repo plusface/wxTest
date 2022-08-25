@@ -46,7 +46,7 @@ try {
 }
 const { wxAppId, wxAppsecret, apiKey, templateInfo, userInfos, sendTime } = config
 /** 处理成定时器认识的格式 */
-const [h, m] = sendTime.split('|')
+const [h, m] = sendTime.split(':')
 time = m + ' ' + h
 
 export const getToken = async () => {
