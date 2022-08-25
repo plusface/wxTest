@@ -124,6 +124,7 @@ export const getHoroscope = async (astro: string) => {
 
 
 export const send = async () => {
+  const token = await getToken()
   const { lubarmonth, lunarday } = await getLunar()
   const date = `${formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss EEE')} ${lubarmonth} ${lunarday} `
   console.log('[ date ]', date)
