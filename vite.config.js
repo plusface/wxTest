@@ -18,7 +18,7 @@ export default defineConfig(() => {
       rollupOptions: {
         external: ['path', 'fs', 'http', 'https', 'url', 'zlib', 'util', 'assert', 'stream', 'constants', 'events']
       },
-      minify: false
+      minify: true
     }
   }
 })
