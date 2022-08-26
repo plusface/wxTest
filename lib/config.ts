@@ -36,7 +36,6 @@ type ApiResponse<T = any> = {
   newslist: T[]
 }
 
-export let time = '30 8'
 
 let config!: Config
 try {
@@ -44,10 +43,7 @@ try {
 } catch (error) {
   console.log('[ json解析异常 ]', error)
 }
-const { wxAppId, wxAppsecret, apiKey, templateInfo, userInfos, sendTime } = config
-/** 处理成定时器认识的格式 */
-const [h, m] = sendTime.split(':')
-time = m + ' ' + h
+const { wxAppId, wxAppsecret, apiKey, templateInfo, userInfos } = config
 
 export const getToken = async () => {
   try {
