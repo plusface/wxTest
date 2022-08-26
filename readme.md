@@ -2,7 +2,7 @@
 
 ### 微信测试号定时发送
 
-- 支持配置多用户、定时时间、颜色等
+- 支持配置多用户、颜色等
 - `config.json` 配置 appid,apiKey 等相关运行时参数, 内有注释
 - `.github\workflows` github actions 工作流程
 - 上传 github 时只需要`index.js`和`config.json`文件, 其他皆为开发时需要
